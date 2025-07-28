@@ -1,70 +1,197 @@
-# Getting Started with Create React App
+# Sistema de Gestión Hotelera
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Un sistema completo de gestión hotelera desarrollado con React para el frontend y MySQL para la base de datos.
 
-## Available Scripts
+## Características
 
-In the project directory, you can run:
+### 🏨 Gestión Completa de Hotel
+- **Usuarios**: Gestión de usuarios con diferentes roles (cliente, empleado, administrador)
+- **Empleados**: Control de personal con puestos, salarios y turnos
+- **Clientes**: Información detallada de clientes con preferencias
+- **Habitaciones**: Gestión de habitaciones con estados y tipos
+- **Tipos de Habitación**: Configuración de diferentes categorías de habitaciones
+- **Reservas**: Sistema completo de reservas con fechas y estados
+- **Servicios**: Gestión de servicios adicionales (restaurante, spa, etc.)
+- **Reserva Servicios**: Vinculación de servicios con reservas
+- **Pagos**: Control de pagos con diferentes métodos
+- **Inventario**: Gestión de inventario del hotel
+- **Mantenimiento**: Control de mantenimiento de habitaciones
+- **Comentarios**: Sistema de comentarios y calificaciones
 
-### `npm start`
+### 🎨 Interfaz Moderna
+- Diseño responsive con Material-UI
+- Navegación intuitiva con sidebar
+- Formularios validados
+- Notificaciones en tiempo real
+- Tablas interactivas con CRUD completo
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 🔧 Tecnologías Utilizadas
+- **Frontend**: React 19, Material-UI, React Router
+- **Backend**: Node.js, Express
+- **Base de Datos**: MySQL
+- **Herramientas**: Axios para API calls
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Instalación
 
-### `npm test`
+### Prerrequisitos
+- Node.js (versión 16 o superior)
+- MySQL (versión 8.0 o superior)
+- npm o yarn
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Pasos de Instalación
 
-### `npm run build`
+1. **Clonar el repositorio**
+```bash
+git clone <url-del-repositorio>
+cd hotel-proyecto
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. **Instalar dependencias del frontend**
+```bash
+npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. **Configurar la base de datos**
+```bash
+# Ejecutar el script SQL en tu servidor MySQL
+mysql -u root -p < backend/init.sql
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. **Configurar variables de entorno**
+Crear un archivo `.env` en la raíz del proyecto:
+```env
+REACT_APP_API_URL=http://localhost:3001/api
+```
 
-### `npm run eject`
+5. **Iniciar el servidor de desarrollo**
+```bash
+npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+El sistema estará disponible en `http://localhost:3000`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Estructura del Proyecto
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
+hotel-proyecto/
+├── src/
+│   ├── components/
+│   │   └── DataTable.js          # Componente reutilizable para tablas
+│   ├── pages/
+│   │   ├── Usuarios.js           # Gestión de usuarios
+│   │   ├── Empleados.js          # Gestión de empleados
+│   │   ├── Clientes.js           # Gestión de clientes
+│   │   ├── Habitaciones.js       # Gestión de habitaciones
+│   │   ├── TiposHabitacion.js    # Gestión de tipos de habitación
+│   │   ├── Reservas.js           # Gestión de reservas
+│   │   ├── Servicios.js          # Gestión de servicios
+│   │   ├── ReservaServicios.js   # Gestión de reserva de servicios
+│   │   ├── Pagos.js              # Gestión de pagos
+│   │   ├── Inventario.js         # Gestión de inventario
+│   │   ├── Mantenimiento.js      # Gestión de mantenimiento
+│   │   └── Comentarios.js        # Gestión de comentarios
+│   ├── services/
+│   │   └── api.js                # Servicios para llamadas a la API
+│   └── App.js                    # Componente principal
+├── backend/
+│   └── init.sql                  # Script de inicialización de la base de datos
+└── package.json
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Funcionalidades por Módulo
 
-## Learn More
+### 👥 Usuarios
+- Crear, editar, eliminar usuarios
+- Diferentes tipos: cliente, empleado, administrador
+- Validación de email único
+- Gestión de contraseñas
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 👨‍💼 Empleados
+- Vinculación con usuarios
+- Gestión de puestos y salarios
+- Control de turnos (mañana, tarde, noche)
+- Fechas de contratación
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 👤 Clientes
+- Información personal detallada
+- Documento de identidad único
+- Preferencias y nacionalidad
+- Fecha de nacimiento
 
-### Code Splitting
+### 🏠 Habitaciones
+- Números únicos de habitación
+- Estados: disponible, ocupada, mantenimiento, reservada
+- Vinculación con tipos de habitación
+- Control de pisos y limpieza
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### 🛏️ Tipos de Habitación
+- Configuración de capacidades
+- Precios por noche
+- Amenities disponibles
+- Imágenes de referencia
 
-### Analyzing the Bundle Size
+### 📅 Reservas
+- Fechas de entrada y salida
+- Estados: pendiente, confirmada, cancelada, completada
+- Control de adultos y niños
+- Cálculo automático de totales
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### 🍽️ Servicios
+- Categorías: restaurante, spa, lavandería, transporte, otros
+- Disponibilidad: 24h, diurno, nocturno, horario limitado
+- Precios configurables
 
-### Making a Progressive Web App
+### 💳 Pagos
+- Múltiples métodos de pago
+- Estados de transacción
+- IDs de transacción para seguimiento
+- Fechas automáticas
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### 📦 Inventario
+- Control de stock
+- Niveles de reposición
+- Ubicaciones específicas
+- Unidades de medida
 
-### Advanced Configuration
+### 🔧 Mantenimiento
+- Tipos: limpieza, reparación, inspección, otros
+- Estados: pendiente, en proceso, completado
+- Asignación de empleados
+- Fechas de solicitud y completado
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### 💬 Comentarios
+- Sistema de calificaciones
+- Comentarios de clientes
+- Respuestas del hotel
+- Fechas automáticas
 
-### Deployment
+## API Endpoints
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+El sistema incluye endpoints RESTful para todas las entidades:
 
-### `npm run build` fails to minify
+- `GET /api/usuarios` - Obtener todos los usuarios
+- `POST /api/usuarios` - Crear usuario
+- `PUT /api/usuarios/:id` - Actualizar usuario
+- `DELETE /api/usuarios/:id` - Eliminar usuario
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+(Repetir para todas las entidades: empleados, clientes, habitaciones, etc.)
+
+## Contribución
+
+1. Fork el proyecto
+2. Crear una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abrir un Pull Request
+
+## Licencia
+
+Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.md) para detalles.
+
+## Contacto
+
+Para preguntas o soporte, contacta al equipo de desarrollo.
+
+---
+
+**Desarrollado con ❤️ para la gestión hotelera moderna**
