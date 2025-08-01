@@ -3,29 +3,13 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { 
-  AppBar, 
-  Toolbar, 
-  Typography, 
-  Button, 
-  Box,
   Container,
-  Grid,
-  Card,
-  CardContent,
-  CardMedia,
-  CardActions
+  Box
 } from '@mui/material';
-import {
-  People as PeopleIcon,
-  Hotel as HotelIcon,
-  BookOnline as BookOnlineIcon,
-  Restaurant as RestaurantIcon,
-  Payment as PaymentIcon,
-  Inventory as InventoryIcon,
-  Build as BuildIcon,
-  Comment as CommentIcon,
-  Home as HomeIcon
-} from '@mui/icons-material';
+
+// Importar componentes
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 // Importar páginas
 import Bienvenida from './pages/Bienvenida';
@@ -54,54 +38,22 @@ const theme = createTheme({
 });
 
 function App() {
-  const menuItems = [
-    { text: 'Inicio', icon: <HomeIcon />, path: '/' },
-    { text: 'Usuarios', icon: <PeopleIcon />, path: '/usuarios' },
-    { text: 'Empleados', icon: <PeopleIcon />, path: '/empleados' },
-    { text: 'Clientes', icon: <PeopleIcon />, path: '/clientes' },
-    { text: 'Habitaciones', icon: <HotelIcon />, path: '/habitaciones' },
-    { text: 'Tipos de Habitación', icon: <HotelIcon />, path: '/tipos-habitacion' },
-    { text: 'Reservas', icon: <BookOnlineIcon />, path: '/reservas' },
-    { text: 'Servicios', icon: <RestaurantIcon />, path: '/servicios' },
-    { text: 'Reserva Servicios', icon: <RestaurantIcon />, path: '/reserva-servicios' },
-    { text: 'Pagos', icon: <PaymentIcon />, path: '/pagos' },
-    { text: 'Inventario', icon: <InventoryIcon />, path: '/inventario' },
-    { text: 'Mantenimiento', icon: <BuildIcon />, path: '/mantenimiento' },
-    { text: 'Comentarios', icon: <CommentIcon />, path: '/comentarios' },
-  ];
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
-        <Box sx={{ flexGrow: 1 }}>
-          <AppBar position="static">
-            <Toolbar>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                🏨 Fiesta Americana Acapulco Villas
-              </Typography>
-              <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                {menuItems.map((item) => (
-                  <Button
-                    key={item.text}
-                    color="inherit"
-                    startIcon={item.icon}
-                    component="a"
-                    href={item.path}
-                    sx={{ 
-                      fontSize: '0.8rem',
-                      minWidth: 'auto',
-                      px: 1
-                    }}
-                  >
-                    {item.text}
-                  </Button>
-                ))}
-              </Box>
-            </Toolbar>
-          </AppBar>
+        <Box sx={{ 
+          display: 'flex', 
+          flexDirection: 'column', 
+          minHeight: '100vh' 
+        }}>
+          <Navbar />
           
-          <Container maxWidth="xl" sx={{ mt: 3, mb: 3 }}>
+          <Container maxWidth="xl" sx={{ 
+            mt: 3, 
+            mb: 3, 
+            flex: 1 
+          }}>
             <Routes>
               <Route path="/" element={<Bienvenida />} />
               <Route path="/usuarios" element={<Usuarios />} />
@@ -118,6 +70,8 @@ function App() {
               <Route path="/comentarios" element={<Comentarios />} />
             </Routes>
           </Container>
+          
+          <Footer />
         </Box>
       </Router>
     </ThemeProvider>
